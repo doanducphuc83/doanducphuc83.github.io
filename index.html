@@ -7,48 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Open Game</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleIndex.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="btnPlay">
-            <a id="btn" href="/game.html">Play Game</a>
-        </div>
-
-        <div>
-            <a id="btn" href="highScore.html">High Score</a>
-        </div>
-
-        <div class="email">
-            <h1>email: doanducphuc83@gmail.com</h1>
-            <br>
-            <p>
-            <h1>double click to open full screen</h1>
-            </p>
-        </div>
-
-
+    <div>
+        <h1 id="dkg">Điều khiển Game</h1>
+        <p id="muc1">1. Dùng bàn phím:</p>
+        <p id="muc2">- click đúp chuột để mở toàn màn hình.</p>
+        <p id="muc2">- sử dụng phím mũi tên để điều khiển nhân vật.</p>
+        <p id="muc1">2. Màn hình cảm ứng:</p>
+        <p id="muc2">- chạm hai lần liên tiếp để mở toàn màn hình.</p>
+        <p id="muc2">- vuốt sang trái, vuốt sang phải, vuốt lên trên, vuốt xuống dưới để điều khiển nhân vật.</p>
     </div>
-    <script>
-        function getFullscreenElement() {
-            return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullscreenElement || document.msFullscreenElement;
-        }
-
-        function toggleFullscreen() {
-            if (getFullscreenElement()) {
-                document.exitFullscreen();
-            }
-            else {
-                document.documentElement.requestFullscreen().catch((e) => { });
-            }
-        }
-
-        document.addEventListener("dblclick", () => {
-            toggleFullscreen();
-        });
-
-    </script>
+    <div id="caAnMuc">
+        <a class="game1" href="indexCaAnMuc.html">Game Cá Ăn Mực</a>
+        <a href="indexCaAnMuc.html"><img class="anhGame1" src="/img/caAnMuc.png" alt="Ảnh game 1"></a>
+    </div>
 </body>
 
 </html>
