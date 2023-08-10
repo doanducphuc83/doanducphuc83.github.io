@@ -24,6 +24,26 @@
         <a class="game1" href="indexCaAnMuc.html">Game Cá Ăn Mực</a>
         <a href="indexCaAnMuc.html"><img class="anhGame1" src="/img/caAnMuc.png" alt="Ảnh game 1"></a>
     </div>
+
+    <script>
+        function getFullscreenElement() {
+            return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullscreenElement || document.msFullscreenElement;
+        }
+
+        function toggleFullscreen() {
+            if (getFullscreenElement()) {
+                document.exitFullscreen();
+            }
+            else {
+                document.documentElement.requestFullscreen().catch((e) => { });
+            }
+        }
+
+        document.addEventListener("dblclick", () => {
+            toggleFullscreen();
+        });
+
+    </script>
 </body>
 
 </html>
