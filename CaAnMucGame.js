@@ -14,6 +14,7 @@ function toggleFullscreen() {
 
 document.addEventListener("dblclick", () => {
     toggleFullscreen();
+    setTimeout(() => {window.location.reload()}, 500);
 });
 
 // canvas setup

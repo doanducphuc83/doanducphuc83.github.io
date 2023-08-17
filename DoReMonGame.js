@@ -19,6 +19,7 @@ function anhGocFullScreen() {
 
 anhgocjs.addEventListener("click", () => {
     anhGocFullScreen();
+    setTimeout(() => {window.location.reload()}, 500);
 });
 
 function gameFullScreen() {
@@ -31,6 +32,7 @@ function gameFullScreen() {
 }
 document.addEventListener("dblclick", () => {
     gameFullScreen();
+    setTimeout(() => {window.location.reload()}, 500);
 });
 
 
