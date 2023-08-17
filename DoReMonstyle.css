@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    position: fixed;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-y: hidden;
+}
+
+#anhGoc {
+    position: fixed;
+}
+
+.hien {
+    display: none;
+}
+
+.btn {
+    position: fixed;
+}
+
+#btn {
+    justify-content: center;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #346bd9;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+
+}
+
+
+#btn:hover {
+    background: #46fc3c;
+}
+
+#btnGoHome {
+    justify-content: center;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #346bd9;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+#btnGoIndex {
+    justify-content: center;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #346bd9;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+#btnXoaBtt {
+    justify-content: center;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #346bd9;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    margin-top: 5vh;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#goHome {
+    max-width: 200px;
+    max-height: 50px;
+    margin: 25vh auto 10px auto;
+}
+
+#textTime {
+    position: fixed;
+    color: white;
+    font-size: 25px;
+}
+
+#dongHo {
+    position: fixed;
+    color: white;
+    font-size: 25px;
+}
+
+#exit {
+    position: fixed;
+    justify-content: center;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #346bd9;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+
+#chuyenDenEnd {
+    position: fixed;
+    width: 140px;
+    justify-content: center;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #346bd9;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#canvas {
+    background-color: black;
+}
+
+#random {
+    position: fixed;
+    width: 140px;
+    justify-content: center;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #346bd9;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#random:hover {
+    background: #46fc3c;
+}
+
+.container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    margin-top: 8vh;
+    width: 20rem;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    border: none;
+    box-shadow: 0 0.1rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+#finalScore {
+    max-width: 80vw;
+    max-height: 50px;
+    margin: 10vh auto 10px auto;
+    color: red;
+
+}
+
+#highScoreList {
+    max-width: 200px;
+    max-height: 50px;
+    margin: 0 auto;
+    color: red;
+}
+
+.savebtn {
+    max-width: 200px;
+    max-height: 50px;
+    margin: 10vh auto;
+}

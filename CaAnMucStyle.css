@@ -11,7 +11,6 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
-    /* justify-content: left; */
     overflow-y: hidden;
 }
 
@@ -40,6 +39,33 @@ body {
 
 #btn:hover {
     background: #46fc3c;
+    text-decoration: none;
+}
+
+#btnXoaBtt {
+    justify-content: center;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #346bd9;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    margin-top: 5vh;
+}
+
+#btnCaExit {
+    justify-content: center;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #346bd9;
+    padding: 10px 20px 10px 20px;
     text-decoration: none;
 }
 

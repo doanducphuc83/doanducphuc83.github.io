@@ -984,14 +984,14 @@ function thongBao(ctx) {
         ctx.fillStyle = 'red';
         ctx.fillText('Game Over: Score: ' + score + ', Lost: ' + lost, resizeCanvas.width / 3, resizeCanvas.height / 2);
         localStorage.setItem("DiemMoiLanChoi", score);
-        setTimeout(function () { window.location.replace("/end.html") }, 1500);
+        setTimeout(function () { window.location.replace("/CaAnMucEnd.html") }, 1500);
     }
 
     if (ketThucLevel) {
         ctx.fillStyle = 'red';
         ctx.fillText('End Level: Score: ' + score + ' , Lost: ' + lost, resizeCanvas.width / 3, resizeCanvas.height / 2);
         localStorage.setItem("DiemMoiLanChoi", score);
-        setTimeout(function () { window.location.replace("/end.html") }, 1500);
+        setTimeout(function () { window.location.replace("/CaAnMucEnd.html") }, 1500);
     }
 
 }

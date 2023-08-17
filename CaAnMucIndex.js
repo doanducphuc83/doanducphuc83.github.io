@@ -15,9 +15,8 @@ document.addEventListener("dblclick", () => {
     toggleFullscreen();
 });
 
-const highScoreList = document.getElementById('highScoreList');
-const bangDiemSapXepGiamDan = JSON.parse(localStorage.getItem("bangDiemJson")) || [];
+document.getElementById('btnCaExit').addEventListener('click', (e) => {
+    localStorage.removeItem("DiemMoiLanChoi");
+});
 
-highScoreList.innerHTML = bangDiemSapXepGiamDan.map(DiemKhiNhanNutSave => {
-    return `<li class="bangDiem">${DiemKhiNhanNutSave.name} - ${DiemKhiNhanNutSave.score}</li>`;
-}).join("");
+document.getElementById('btnPlayGame').style.marginTop = 20 + "vh";

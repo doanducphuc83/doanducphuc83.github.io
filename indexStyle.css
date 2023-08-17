@@ -1,21 +1,22 @@
 #dkg {
     text-align: center;
     color: blue;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 #muc1 {
-font-size: 30px;
+font-size: 20px;
 color: blue;
 }
 
 #muc2 {
-    font-size: 20px;
+    font-size: 15px;
     color: red;
     text-indent: 40px;
+    text-decoration: none;
 }
 
-.game1 {
+.tenGame {
     color: blue;
     font-size: 30px;
     text-decoration: none;

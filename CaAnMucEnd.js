@@ -16,7 +16,7 @@ document.addEventListener("dblclick", () => {
 });
 
 const finalScore = document.getElementById('finalScore');
-const diemMoiLanChoiJs = localStorage.getItem("DiemMoiLanChoi");
+const diemMoiLanChoiJs = JSON.parse(localStorage.getItem("DiemMoiLanChoi"));
 finalScore.innerText = "Score: " + diemMoiLanChoiJs;
 
 const username = document.getElementById('username');
@@ -42,5 +42,5 @@ function saveHighScore(e){
     bangDiemJs.splice(5); // bangDiemJs chỉ cho phép lưu được 5 phần tử (index 0, ..., index 4). Nếu push tiếp phần từ thứ 6, thì phần tử thứ 5 tại vị trí index 4 sẽ bị thay thế bằng phần tử thứ 6.
     
     localStorage.setItem("bangDiemJson", JSON.stringify(bangDiemJs));
-    window.location.replace("/index.html");
+    window.location.replace("/CaAnMucIndex.html");
 }
