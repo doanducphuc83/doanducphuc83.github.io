@@ -19,7 +19,7 @@ function anhGocFullScreen() {
 
 anhgocjs.addEventListener("click", () => {
     anhGocFullScreen();
-    setTimeout(() => {window.location.reload()}, 500);
+    setTimeout(() => { window.location.reload() }, 500);
 });
 
 function gameFullScreen() {
@@ -32,7 +32,7 @@ function gameFullScreen() {
 }
 document.addEventListener("dblclick", () => {
     gameFullScreen();
-    setTimeout(() => {window.location.reload()}, 500);
+    setTimeout(() => { window.location.reload() }, 500);
 });
 
 
@@ -1114,6 +1114,46 @@ class ResizeCanvas {
         this.height = height;
         this.canvas.width = width;
         this.canvas.height = height;
+
+        if (resizeCanvas.width > resizeCanvas.height) {
+            document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
+            document.getElementById('btn').style.marginLeft = 50 + "px";
+            if (resizeCanvas.width <= 667) {
+                document.getElementById('btn').style.marginLeft = 10 + "px";
+            }
+            document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
+            document.getElementById('chuyenDenEnd').style.marginTop = resizeCanvas.height - 250 + "px";
+            document.getElementById('exit').style.marginLeft = resizeCanvas.width - 145 + "px";
+            document.getElementById('exit').style.marginTop = resizeCanvas.height - 70 + "px";
+            document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
+            document.getElementById('random').style.marginTop = resizeCanvas.height - 160 + "px";
+        }
+        if (resizeCanvas.width < resizeCanvas.height) {
+            document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
+            document.getElementById('btn').style.marginLeft = 10 + "px";
+            document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
+            document.getElementById('random').style.marginTop = resizeCanvas.height - 70 + "px";
+            document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
+            document.getElementById('chuyenDenEnd').style.marginTop = 10 + "px";
+            document.getElementById('exit').style.marginLeft = 10 + "px";
+            document.getElementById('exit').style.marginTop = 10 + "px";
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         if (this.width > this.height) {
             document.getElementById('textTime').innerText = 'Total Time:';
