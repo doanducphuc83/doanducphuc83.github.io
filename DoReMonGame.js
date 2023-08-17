@@ -19,7 +19,6 @@ function anhGocFullScreen() {
 
 anhgocjs.addEventListener("click", () => {
     anhGocFullScreen();
-    setTimeout(() => { window.location.reload() }, 500);
 });
 
 function gameFullScreen() {
@@ -32,7 +31,6 @@ function gameFullScreen() {
 }
 document.addEventListener("dblclick", () => {
     gameFullScreen();
-    setTimeout(() => { window.location.reload() }, 500);
 });
 
 
@@ -1138,22 +1136,6 @@ class ResizeCanvas {
             document.getElementById('exit').style.marginLeft = 10 + "px";
             document.getElementById('exit').style.marginTop = 10 + "px";
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         if (this.width > this.height) {
             document.getElementById('textTime').innerText = 'Total Time:';
