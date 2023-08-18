@@ -2059,15 +2059,6 @@ class ResizeCanvas {
             document.getElementById('exit').style.marginTop = 10 + "px";
         }
 
-        if (this.width > this.height) {
-            document.getElementById('textTime').innerText = 'Total Time:';
-        }
-        else {
-            document.getElementById('textTime').innerText = 'Thời gian hoàn thành:';
-        }
-
-
-
         ctx.font = '20px Georgia';
 
         this.anhGoc.reset();
@@ -2248,9 +2239,6 @@ class ResizeCanvas {
     }
 }
 const resizeCanvas = new ResizeCanvas(canvas);
-if (resizeCanvas.width > resizeCanvas.height) {
-    document.getElementById('textTime').innerText = 'Total Time:';
-}
 
 //document.getElementById('chuyenDenEnd').style.display = 'none';
 
@@ -2407,9 +2395,6 @@ function dieuKhien() {
     localStorage.removeItem("tdBatDau");
     localStorage.removeItem("tdKetThuc");
     document.getElementById('dongHo').innerText = '00 : 00 : 00';
-    if (resizeCanvas.width > resizeCanvas.height) {
-        document.getElementById('textTime').innerText = 'Total Time:';
-    }
 
     const curDate1 = new Date();
     gioBatDau = curDate1.getHours();
@@ -4344,9 +4329,6 @@ function randomImage() {
     localStorage.removeItem("tdBatDau");
     localStorage.removeItem("tdKetThuc");
     document.getElementById('dongHo').innerText = '00 : 00 : 00';
-    if (resizeCanvas.width > resizeCanvas.height) {
-        document.getElementById('textTime').innerText = 'Total Time:';
-    }
 
     document.getElementById('btn').style.display = 'none';
 
