@@ -21,13 +21,23 @@ anhgocjs.addEventListener("click", () => {
     anhGocFullScreen();
 });
 
-function gameFullScreen(orientation) {
-        document.documentElement.requestFullscreen().catch((e) => { });
-        screen.orientation.lock(orientation);
+function gameFullScreen() {
+    document.documentElement.requestFullscreen().catch((e) => { });
 }
 document.addEventListener("dblclick", () => {
-    gameFullScreen(portrait);
-    gameFullScreen(landscape);
+    switch (screen.orientation.type) {
+        case "landscape-primary":
+            gameFullScreen();
+            let myScreenOrientation = window.screen.orientation;
+            myScreenOrientation.lock("landscape");
+            break;
+        case "portrait-primary":
+            gameFullScreen();
+            let myScreenOrientationxyz = window.screen.orientation;
+            myScreenOrientationxyz.lock("portrait");
+            break;
+        default:
+    }
 });
 
 
