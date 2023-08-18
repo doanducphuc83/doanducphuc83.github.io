@@ -1114,76 +1114,82 @@ class ResizeCanvas {
         this.canvas.width = width;
         this.canvas.height = height;
 
-        // Lưu tọa độ của ảnh (giá trị lưu không thay đổi khi di chuyển ảnh):
-        localStorage.setItem("xTrangcd", JSON.stringify(resizeCanvas.anhTrang.x));
-        localStorage.setItem("yTrangcd", JSON.stringify(resizeCanvas.anhTrang.y));
-        localStorage.setItem("x1cd", JSON.stringify(resizeCanvas.anh1class.x));
-        localStorage.setItem("y1cd", JSON.stringify(resizeCanvas.anh1class.y));
-        localStorage.setItem("x2cd", JSON.stringify(resizeCanvas.anh2class.x));
-        localStorage.setItem("y2cd", JSON.stringify(resizeCanvas.anh2class.y));
-        localStorage.setItem("x3cd", JSON.stringify(resizeCanvas.anh3class.x));
-        localStorage.setItem("y3cd", JSON.stringify(resizeCanvas.anh3class.y));
-        localStorage.setItem("x4cd", JSON.stringify(resizeCanvas.anh4class.x));
-        localStorage.setItem("y4cd", JSON.stringify(resizeCanvas.anh4class.y));
-        localStorage.setItem("x5cd", JSON.stringify(resizeCanvas.anh5class.x));
-        localStorage.setItem("y5cd", JSON.stringify(resizeCanvas.anh5class.y));
-        localStorage.setItem("x6cd", JSON.stringify(resizeCanvas.anh6class.x));
-        localStorage.setItem("y6cd", JSON.stringify(resizeCanvas.anh6class.y));
-        localStorage.setItem("x7cd", JSON.stringify(resizeCanvas.anh7class.x));
-        localStorage.setItem("y7cd", JSON.stringify(resizeCanvas.anh7class.y));
-        localStorage.setItem("x8cd", JSON.stringify(resizeCanvas.anh8class.x));
-        localStorage.setItem("y8cd", JSON.stringify(resizeCanvas.anh8class.y));
-        localStorage.setItem("x9cd", JSON.stringify(resizeCanvas.anh9class.x));
-        localStorage.setItem("y9cd", JSON.stringify(resizeCanvas.anh9class.y));
-        localStorage.setItem("x10cd", JSON.stringify(resizeCanvas.anh10class.x));
-        localStorage.setItem("y10cd", JSON.stringify(resizeCanvas.anh10class.y));
-        localStorage.setItem("x11cd", JSON.stringify(resizeCanvas.anh11class.x));
-        localStorage.setItem("y11cd", JSON.stringify(resizeCanvas.anh11class.y));
-        localStorage.setItem("x12cd", JSON.stringify(resizeCanvas.anh12class.x));
-        localStorage.setItem("y12cd", JSON.stringify(resizeCanvas.anh12class.y));
-        localStorage.setItem("x13cd", JSON.stringify(resizeCanvas.anh13class.x));
-        localStorage.setItem("y13cd", JSON.stringify(resizeCanvas.anh13class.y));
-        localStorage.setItem("x14cd", JSON.stringify(resizeCanvas.anh14class.x));
-        localStorage.setItem("y14cd", JSON.stringify(resizeCanvas.anh14class.y));
-        localStorage.setItem("x15cd", JSON.stringify(resizeCanvas.anh15class.x));
-        localStorage.setItem("y15cd", JSON.stringify(resizeCanvas.anh15class.y));
-        localStorage.setItem("x16cd", JSON.stringify(resizeCanvas.anh16class.x));
-        localStorage.setItem("y16cd", JSON.stringify(resizeCanvas.anh16class.y));
-        // lưu tọa độ của ảnh trước khi di chuyển:
-        localStorage.setItem("xTrang", JSON.stringify(resizeCanvas.anhTrang.x));
-        localStorage.setItem("yTrang", JSON.stringify(resizeCanvas.anhTrang.y));
-        localStorage.setItem("x1", JSON.stringify(resizeCanvas.anh1class.x));
-        localStorage.setItem("y1", JSON.stringify(resizeCanvas.anh1class.y));
-        localStorage.setItem("x2", JSON.stringify(resizeCanvas.anh2class.x));
-        localStorage.setItem("y2", JSON.stringify(resizeCanvas.anh2class.y));
-        localStorage.setItem("x3", JSON.stringify(resizeCanvas.anh3class.x));
-        localStorage.setItem("y3", JSON.stringify(resizeCanvas.anh3class.y));
-        localStorage.setItem("x4", JSON.stringify(resizeCanvas.anh4class.x));
-        localStorage.setItem("y4", JSON.stringify(resizeCanvas.anh4class.y));
-        localStorage.setItem("x5", JSON.stringify(resizeCanvas.anh5class.x));
-        localStorage.setItem("y5", JSON.stringify(resizeCanvas.anh5class.y));
-        localStorage.setItem("x6", JSON.stringify(resizeCanvas.anh6class.x));
-        localStorage.setItem("y6", JSON.stringify(resizeCanvas.anh6class.y));
-        localStorage.setItem("x7", JSON.stringify(resizeCanvas.anh7class.x));
-        localStorage.setItem("y7", JSON.stringify(resizeCanvas.anh7class.y));
-        localStorage.setItem("x8", JSON.stringify(resizeCanvas.anh8class.x));
-        localStorage.setItem("y8", JSON.stringify(resizeCanvas.anh8class.y));
-        localStorage.setItem("x9", JSON.stringify(resizeCanvas.anh9class.x));
-        localStorage.setItem("y9", JSON.stringify(resizeCanvas.anh9class.y));
-        localStorage.setItem("x10", JSON.stringify(resizeCanvas.anh10class.x));
-        localStorage.setItem("y10", JSON.stringify(resizeCanvas.anh10class.y));
-        localStorage.setItem("x11", JSON.stringify(resizeCanvas.anh11class.x));
-        localStorage.setItem("y11", JSON.stringify(resizeCanvas.anh11class.y));
-        localStorage.setItem("x12", JSON.stringify(resizeCanvas.anh12class.x));
-        localStorage.setItem("y12", JSON.stringify(resizeCanvas.anh12class.y));
-        localStorage.setItem("x13", JSON.stringify(resizeCanvas.anh13class.x));
-        localStorage.setItem("y13", JSON.stringify(resizeCanvas.anh13class.y));
-        localStorage.setItem("x14", JSON.stringify(resizeCanvas.anh14class.x));
-        localStorage.setItem("y14", JSON.stringify(resizeCanvas.anh14class.y));
-        localStorage.setItem("x15", JSON.stringify(resizeCanvas.anh15class.x));
-        localStorage.setItem("y15", JSON.stringify(resizeCanvas.anh15class.y));
-        localStorage.setItem("x16", JSON.stringify(resizeCanvas.anh16class.x));
-        localStorage.setItem("y16", JSON.stringify(resizeCanvas.anh16class.y));
+        // xóa tọa độ của ảnh (giá trị lưu không thay đổi khi di chuyển ảnh):
+        localStorage.removeItem("xTrangcd");
+        localStorage.removeItem("yTrangcd");
+        localStorage.removeItem("x1cd");
+        localStorage.removeItem("y1cd");
+        localStorage.removeItem("x2cd");
+        localStorage.removeItem("y2cd");
+        localStorage.removeItem("x3cd");
+        localStorage.removeItem("y3cd");
+        localStorage.removeItem("x4cd");
+        localStorage.removeItem("y4cd");
+        localStorage.removeItem("x5cd");
+        localStorage.removeItem("y5cd");
+        localStorage.removeItem("x6cd");
+        localStorage.removeItem("y6cd");
+        localStorage.removeItem("x7cd");
+        localStorage.removeItem("y7cd");
+        localStorage.removeItem("x8cd")
+        localStorage.removeItem("y8cd");
+        localStorage.removeItem("x9cd");
+        localStorage.removeItem("y9cd");
+        localStorage.removeItem("x10cd");
+        localStorage.removeItem("y10cd");
+        localStorage.removeItem("x11cd");
+        localStorage.removeItem("y11cd");
+        localStorage.removeItem("x12cd");
+        localStorage.removeItem("y12cd");
+        localStorage.removeItem("x13cd");
+        localStorage.removeItem("y13cd");
+        localStorage.removeItem("x14cd");
+        localStorage.removeItem("y14cd");
+        localStorage.removeItem("x15cd");
+        localStorage.removeItem("y15cd");
+        localStorage.removeItem("x16cd");
+        localStorage.removeItem("y16cd");
+        // xóa tọa độ của ảnh trước khi di chuyển:
+        localStorage.removeItem("xTrang");
+        localStorage.removeItem("yTrang");
+        localStorage.removeItem("x1");
+        localStorage.removeItem("y1");
+        localStorage.removeItem("x2");
+        localStorage.removeItem("y2");
+        localStorage.removeItem("x3");
+        localStorage.removeItem("y3");
+        localStorage.removeItem("x4");
+        localStorage.removeItem("y4");
+        localStorage.removeItem("x5");
+        localStorage.removeItem("y5");
+        localStorage.removeItem("x6");
+        localStorage.removeItem("y6");
+        localStorage.removeItem("x7");
+        localStorage.removeItem("y7");
+        localStorage.removeItem("x8");
+        localStorage.removeItem("y8");
+        localStorage.removeItem("x9");
+        localStorage.removeItem("y9");
+        localStorage.removeItem("x10");
+        localStorage.removeItem("y10");
+        localStorage.removeItem("x11");
+        localStorage.removeItem("y11");
+        localStorage.removeItem("x12");
+        localStorage.removeItem("y12");
+        localStorage.removeItem("x13");
+        localStorage.removeItem("y13");
+        localStorage.removeItem("x14");
+        localStorage.removeItem("y14");
+        localStorage.removeItem("x15");
+        localStorage.removeItem("y15");
+        localStorage.removeItem("x16");
+        localStorage.removeItem("y16");
+        localStorage.removeItem("endGame");
+        localStorage.removeItem("anh1dichuyen");
+        localStorage.removeItem("luuPhut");
+        localStorage.removeItem("luuGiay");
+        localStorage.removeItem("luuGio");
+        localStorage.removeItem("tdBatDau");
 
         if (resizeCanvas.width > resizeCanvas.height) {
             document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
@@ -1263,76 +1269,7 @@ class ResizeCanvas {
         this.anh2class.draw(ctx);
         this.anh1class.draw(ctx);
         this.anhTrang.draw(ctx);
-        // Lưu tọa độ của ảnh (giá trị lưu không thay đổi khi di chuyển ảnh):
-        localStorage.setItem("xTrangcd", JSON.stringify(resizeCanvas.anhTrang.x));
-        localStorage.setItem("yTrangcd", JSON.stringify(resizeCanvas.anhTrang.y));
-        localStorage.setItem("x1cd", JSON.stringify(resizeCanvas.anh1class.x));
-        localStorage.setItem("y1cd", JSON.stringify(resizeCanvas.anh1class.y));
-        localStorage.setItem("x2cd", JSON.stringify(resizeCanvas.anh2class.x));
-        localStorage.setItem("y2cd", JSON.stringify(resizeCanvas.anh2class.y));
-        localStorage.setItem("x3cd", JSON.stringify(resizeCanvas.anh3class.x));
-        localStorage.setItem("y3cd", JSON.stringify(resizeCanvas.anh3class.y));
-        localStorage.setItem("x4cd", JSON.stringify(resizeCanvas.anh4class.x));
-        localStorage.setItem("y4cd", JSON.stringify(resizeCanvas.anh4class.y));
-        localStorage.setItem("x5cd", JSON.stringify(resizeCanvas.anh5class.x));
-        localStorage.setItem("y5cd", JSON.stringify(resizeCanvas.anh5class.y));
-        localStorage.setItem("x6cd", JSON.stringify(resizeCanvas.anh6class.x));
-        localStorage.setItem("y6cd", JSON.stringify(resizeCanvas.anh6class.y));
-        localStorage.setItem("x7cd", JSON.stringify(resizeCanvas.anh7class.x));
-        localStorage.setItem("y7cd", JSON.stringify(resizeCanvas.anh7class.y));
-        localStorage.setItem("x8cd", JSON.stringify(resizeCanvas.anh8class.x));
-        localStorage.setItem("y8cd", JSON.stringify(resizeCanvas.anh8class.y));
-        localStorage.setItem("x9cd", JSON.stringify(resizeCanvas.anh9class.x));
-        localStorage.setItem("y9cd", JSON.stringify(resizeCanvas.anh9class.y));
-        localStorage.setItem("x10cd", JSON.stringify(resizeCanvas.anh10class.x));
-        localStorage.setItem("y10cd", JSON.stringify(resizeCanvas.anh10class.y));
-        localStorage.setItem("x11cd", JSON.stringify(resizeCanvas.anh11class.x));
-        localStorage.setItem("y11cd", JSON.stringify(resizeCanvas.anh11class.y));
-        localStorage.setItem("x12cd", JSON.stringify(resizeCanvas.anh12class.x));
-        localStorage.setItem("y12cd", JSON.stringify(resizeCanvas.anh12class.y));
-        localStorage.setItem("x13cd", JSON.stringify(resizeCanvas.anh13class.x));
-        localStorage.setItem("y13cd", JSON.stringify(resizeCanvas.anh13class.y));
-        localStorage.setItem("x14cd", JSON.stringify(resizeCanvas.anh14class.x));
-        localStorage.setItem("y14cd", JSON.stringify(resizeCanvas.anh14class.y));
-        localStorage.setItem("x15cd", JSON.stringify(resizeCanvas.anh15class.x));
-        localStorage.setItem("y15cd", JSON.stringify(resizeCanvas.anh15class.y));
-        localStorage.setItem("x16cd", JSON.stringify(resizeCanvas.anh16class.x));
-        localStorage.setItem("y16cd", JSON.stringify(resizeCanvas.anh16class.y));
-        // lưu tọa độ của ảnh trước khi di chuyển:
-        localStorage.setItem("xTrang", JSON.stringify(resizeCanvas.anhTrang.x));
-        localStorage.setItem("yTrang", JSON.stringify(resizeCanvas.anhTrang.y));
-        localStorage.setItem("x1", JSON.stringify(resizeCanvas.anh1class.x));
-        localStorage.setItem("y1", JSON.stringify(resizeCanvas.anh1class.y));
-        localStorage.setItem("x2", JSON.stringify(resizeCanvas.anh2class.x));
-        localStorage.setItem("y2", JSON.stringify(resizeCanvas.anh2class.y));
-        localStorage.setItem("x3", JSON.stringify(resizeCanvas.anh3class.x));
-        localStorage.setItem("y3", JSON.stringify(resizeCanvas.anh3class.y));
-        localStorage.setItem("x4", JSON.stringify(resizeCanvas.anh4class.x));
-        localStorage.setItem("y4", JSON.stringify(resizeCanvas.anh4class.y));
-        localStorage.setItem("x5", JSON.stringify(resizeCanvas.anh5class.x));
-        localStorage.setItem("y5", JSON.stringify(resizeCanvas.anh5class.y));
-        localStorage.setItem("x6", JSON.stringify(resizeCanvas.anh6class.x));
-        localStorage.setItem("y6", JSON.stringify(resizeCanvas.anh6class.y));
-        localStorage.setItem("x7", JSON.stringify(resizeCanvas.anh7class.x));
-        localStorage.setItem("y7", JSON.stringify(resizeCanvas.anh7class.y));
-        localStorage.setItem("x8", JSON.stringify(resizeCanvas.anh8class.x));
-        localStorage.setItem("y8", JSON.stringify(resizeCanvas.anh8class.y));
-        localStorage.setItem("x9", JSON.stringify(resizeCanvas.anh9class.x));
-        localStorage.setItem("y9", JSON.stringify(resizeCanvas.anh9class.y));
-        localStorage.setItem("x10", JSON.stringify(resizeCanvas.anh10class.x));
-        localStorage.setItem("y10", JSON.stringify(resizeCanvas.anh10class.y));
-        localStorage.setItem("x11", JSON.stringify(resizeCanvas.anh11class.x));
-        localStorage.setItem("y11", JSON.stringify(resizeCanvas.anh11class.y));
-        localStorage.setItem("x12", JSON.stringify(resizeCanvas.anh12class.x));
-        localStorage.setItem("y12", JSON.stringify(resizeCanvas.anh12class.y));
-        localStorage.setItem("x13", JSON.stringify(resizeCanvas.anh13class.x));
-        localStorage.setItem("y13", JSON.stringify(resizeCanvas.anh13class.y));
-        localStorage.setItem("x14", JSON.stringify(resizeCanvas.anh14class.x));
-        localStorage.setItem("y14", JSON.stringify(resizeCanvas.anh14class.y));
-        localStorage.setItem("x15", JSON.stringify(resizeCanvas.anh15class.x));
-        localStorage.setItem("y15", JSON.stringify(resizeCanvas.anh15class.y));
-        localStorage.setItem("x16", JSON.stringify(resizeCanvas.anh16class.x));
-        localStorage.setItem("y16", JSON.stringify(resizeCanvas.anh16class.y));
+
         if (resizeCanvas.width > resizeCanvas.height) {
             document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
             document.getElementById('btn').style.marginLeft = 50 + "px";
@@ -1362,6 +1299,48 @@ const resizeCanvas = new ResizeCanvas(canvas);
 if (resizeCanvas.width > resizeCanvas.height) {
     document.getElementById('textTime').innerText = 'Total Time:';
 }
+
+document.getElementById('chuyenDenEnd').style.display = 'none';
+
+let xTrangjs;
+let yTrangjs;
+let x1js;
+let y1js;
+let x2js;
+let y2js;
+let x3js;
+let y3js;
+let x4js;
+let y4js;
+let x5js;
+let y5js;
+let x6js;
+let y6js;
+let x7js;
+let y7js;
+let x8js;
+let y8js;
+let x9js;
+let y9js;
+let x10js;
+let y10js;
+let x11js;
+let y11js;
+let x12js;
+let y12js;
+let x13js;
+let y13js;
+let x14js;
+let y14js;
+let x15js;
+let y15js;
+let x16js;
+let y16js;
+
+let thoiDiemBatDau = 0;
+let gioBatDau = 0;
+let phutBatDau = 0;
+let giayBatDau = 0;
 // Lưu tọa độ của ảnh (giá trị lưu không thay đổi khi di chuyển ảnh):
 localStorage.setItem("xTrangcd", JSON.stringify(resizeCanvas.anhTrang.x));
 localStorage.setItem("yTrangcd", JSON.stringify(resizeCanvas.anhTrang.y));
@@ -1433,49 +1412,9 @@ localStorage.setItem("x15", JSON.stringify(resizeCanvas.anh15class.x));
 localStorage.setItem("y15", JSON.stringify(resizeCanvas.anh15class.y));
 localStorage.setItem("x16", JSON.stringify(resizeCanvas.anh16class.x));
 localStorage.setItem("y16", JSON.stringify(resizeCanvas.anh16class.y));
-
-let xTrangjs;
-let yTrangjs;
-let x1js;
-let y1js;
-let x2js;
-let y2js;
-let x3js;
-let y3js;
-let x4js;
-let y4js;
-let x5js;
-let y5js;
-let x6js;
-let y6js;
-let x7js;
-let y7js;
-let x8js;
-let y8js;
-let x9js;
-let y9js;
-let x10js;
-let y10js;
-let x11js;
-let y11js;
-let x12js;
-let y12js;
-let x13js;
-let y13js;
-let x14js;
-let y14js;
-let x15js;
-let y15js;
-let x16js;
-let y16js;
-
-let thoiDiemBatDau = 0;
-let gioBatDau = 0;
-let phutBatDau = 0;
-let giayBatDau = 0;
-
 function dieuKhien() {
     document.getElementById('random').style.display = 'none';
+    document.getElementById('chuyenDenEnd').style.display = 'none';
     document.getElementById('btn').innerText = 'Playing ...';
     localStorage.setItem("endGame", JSON.stringify("no"));
     localStorage.removeItem("tdBatDau");
@@ -1484,6 +1423,7 @@ function dieuKhien() {
     if (resizeCanvas.width > resizeCanvas.height) {
         document.getElementById('textTime').innerText = 'Total Time:';
     }
+
     const curDate1 = new Date();
     gioBatDau = curDate1.getHours();
     phutBatDau = curDate1.getMinutes();
@@ -3222,21 +3162,80 @@ function kiemTra() {
             localStorage.setItem("anh1dichuyen", JSON.stringify(2));
             localStorage.setItem("endGame", JSON.stringify("yes"));
 
-
-            if (resizeCanvas.width < resizeCanvas.height) {
-                if (resizeCanvas.width < 414) {
-                    ctx.drawImage(anhDung, resizeCanvas.anhTrang.x, resizeCanvas.anhTrang.y, 75, 75);
-                }
-                if (resizeCanvas.width >= 414) {
-                    ctx.drawImage(anhDung, resizeCanvas.anhTrang.x, resizeCanvas.anhTrang.y, 100, 100);
-                }
-            }
-            if (resizeCanvas.width > resizeCanvas.height) {
-                ctx.drawImage(anhDung, resizeCanvas.anhTrang.x, resizeCanvas.anhTrang.y, 90, 90);
-            }
-
             document.getElementById('random').style.display = 'block';
+            document.getElementById('chuyenDenEnd').style.display = 'block';
             document.getElementById('btn').innerText = 'Play';
+
+            // xóa tọa độ của ảnh (giá trị lưu không thay đổi khi di chuyển ảnh):
+            localStorage.removeItem("xTrangcd");
+            localStorage.removeItem("yTrangcd");
+            localStorage.removeItem("x1cd");
+            localStorage.removeItem("y1cd");
+            localStorage.removeItem("x2cd");
+            localStorage.removeItem("y2cd");
+            localStorage.removeItem("x3cd");
+            localStorage.removeItem("y3cd");
+            localStorage.removeItem("x4cd");
+            localStorage.removeItem("y4cd");
+            localStorage.removeItem("x5cd");
+            localStorage.removeItem("y5cd");
+            localStorage.removeItem("x6cd");
+            localStorage.removeItem("y6cd");
+            localStorage.removeItem("x7cd");
+            localStorage.removeItem("y7cd");
+            localStorage.removeItem("x8cd")
+            localStorage.removeItem("y8cd");
+            localStorage.removeItem("x9cd");
+            localStorage.removeItem("y9cd");
+            localStorage.removeItem("x10cd");
+            localStorage.removeItem("y10cd");
+            localStorage.removeItem("x11cd");
+            localStorage.removeItem("y11cd");
+            localStorage.removeItem("x12cd");
+            localStorage.removeItem("y12cd");
+            localStorage.removeItem("x13cd");
+            localStorage.removeItem("y13cd");
+            localStorage.removeItem("x14cd");
+            localStorage.removeItem("y14cd");
+            localStorage.removeItem("x15cd");
+            localStorage.removeItem("y15cd");
+            localStorage.removeItem("x16cd");
+            localStorage.removeItem("y16cd");
+            // xóa tọa độ của ảnh trước khi di chuyển:
+            localStorage.removeItem("xTrang");
+            localStorage.removeItem("yTrang");
+            localStorage.removeItem("x1");
+            localStorage.removeItem("y1");
+            localStorage.removeItem("x2");
+            localStorage.removeItem("y2");
+            localStorage.removeItem("x3");
+            localStorage.removeItem("y3");
+            localStorage.removeItem("x4");
+            localStorage.removeItem("y4");
+            localStorage.removeItem("x5");
+            localStorage.removeItem("y5");
+            localStorage.removeItem("x6");
+            localStorage.removeItem("y6");
+            localStorage.removeItem("x7");
+            localStorage.removeItem("y7");
+            localStorage.removeItem("x8");
+            localStorage.removeItem("y8");
+            localStorage.removeItem("x9");
+            localStorage.removeItem("y9");
+            localStorage.removeItem("x10");
+            localStorage.removeItem("y10");
+            localStorage.removeItem("x11");
+            localStorage.removeItem("y11");
+            localStorage.removeItem("x12");
+            localStorage.removeItem("y12");
+            localStorage.removeItem("x13");
+            localStorage.removeItem("y13");
+            localStorage.removeItem("x14");
+            localStorage.removeItem("y14");
+            localStorage.removeItem("x15");
+            localStorage.removeItem("y15");
+            localStorage.removeItem("x16");
+            localStorage.removeItem("y16");
         }
     }
 }
@@ -3383,6 +3382,42 @@ goHom.addEventListener('click', (e) => {
 });
 
 function randomImage() {
+    // lưu tọa độ của ảnh trước khi di chuyển:
+    localStorage.setItem("xTrang", JSON.stringify(resizeCanvas.anhTrang.x));
+    localStorage.setItem("yTrang", JSON.stringify(resizeCanvas.anhTrang.y));
+    localStorage.setItem("x1", JSON.stringify(resizeCanvas.anh1class.x));
+    localStorage.setItem("y1", JSON.stringify(resizeCanvas.anh1class.y));
+    localStorage.setItem("x2", JSON.stringify(resizeCanvas.anh2class.x));
+    localStorage.setItem("y2", JSON.stringify(resizeCanvas.anh2class.y));
+    localStorage.setItem("x3", JSON.stringify(resizeCanvas.anh3class.x));
+    localStorage.setItem("y3", JSON.stringify(resizeCanvas.anh3class.y));
+    localStorage.setItem("x4", JSON.stringify(resizeCanvas.anh4class.x));
+    localStorage.setItem("y4", JSON.stringify(resizeCanvas.anh4class.y));
+    localStorage.setItem("x5", JSON.stringify(resizeCanvas.anh5class.x));
+    localStorage.setItem("y5", JSON.stringify(resizeCanvas.anh5class.y));
+    localStorage.setItem("x6", JSON.stringify(resizeCanvas.anh6class.x));
+    localStorage.setItem("y6", JSON.stringify(resizeCanvas.anh6class.y));
+    localStorage.setItem("x7", JSON.stringify(resizeCanvas.anh7class.x));
+    localStorage.setItem("y7", JSON.stringify(resizeCanvas.anh7class.y));
+    localStorage.setItem("x8", JSON.stringify(resizeCanvas.anh8class.x));
+    localStorage.setItem("y8", JSON.stringify(resizeCanvas.anh8class.y));
+    localStorage.setItem("x9", JSON.stringify(resizeCanvas.anh9class.x));
+    localStorage.setItem("y9", JSON.stringify(resizeCanvas.anh9class.y));
+    localStorage.setItem("x10", JSON.stringify(resizeCanvas.anh10class.x));
+    localStorage.setItem("y10", JSON.stringify(resizeCanvas.anh10class.y));
+    localStorage.setItem("x11", JSON.stringify(resizeCanvas.anh11class.x));
+    localStorage.setItem("y11", JSON.stringify(resizeCanvas.anh11class.y));
+    localStorage.setItem("x12", JSON.stringify(resizeCanvas.anh12class.x));
+    localStorage.setItem("y12", JSON.stringify(resizeCanvas.anh12class.y));
+    localStorage.setItem("x13", JSON.stringify(resizeCanvas.anh13class.x));
+    localStorage.setItem("y13", JSON.stringify(resizeCanvas.anh13class.y));
+    localStorage.setItem("x14", JSON.stringify(resizeCanvas.anh14class.x));
+    localStorage.setItem("y14", JSON.stringify(resizeCanvas.anh14class.y));
+    localStorage.setItem("x15", JSON.stringify(resizeCanvas.anh15class.x));
+    localStorage.setItem("y15", JSON.stringify(resizeCanvas.anh15class.y));
+    localStorage.setItem("x16", JSON.stringify(resizeCanvas.anh16class.x));
+    localStorage.setItem("y16", JSON.stringify(resizeCanvas.anh16class.y));
+    document.getElementById('chuyenDenEnd').style.display = 'none';
     const random1den4 = Math.round(Math.random() * 4);
     // 1 - ảnh trắng ở trên ảnh Doremon.
     // 2 - ảnh trắng ở dưới ảnh Doremon.

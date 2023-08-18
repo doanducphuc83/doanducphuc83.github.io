@@ -77,3 +77,9 @@ function saveHighScore(){
     localStorage.setItem("bangThoiGianJson", JSON.stringify(bangThoiGianjs));
     window.location.assign("/DoReMonIndex.html");
 }
+
+localStorage.removeItem("luuGio");
+localStorage.removeItem("luuPhut");
+localStorage.removeItem("luuGiay");
+localStorage.removeItem("tdBatDau");
+localStorage.removeItem("tdKetThuc");
