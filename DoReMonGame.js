@@ -11,21 +11,21 @@ function gameFullScreen() {
 }
 document.addEventListener("dblclick", () => {
     daPlayjs = JSON.parse(localStorage.getItem("daPlay"));
-    if (daPlayjs === 0) {
         switch (screen.orientation.type) {
             case "landscape-primary":
-                gameFullScreen();
+                if (daPlayjs === 0) {gameFullScreen();}
+                
                 let myScreenOrientation = window.screen.orientation;
                 myScreenOrientation.lock("landscape");
                 break;
             case "portrait-primary":
-                gameFullScreen();
+                if (daPlayjs === 0) {gameFullScreen();}
                 let myScreenOrientationxyz = window.screen.orientation;
                 myScreenOrientationxyz.lock("portrait");
                 break;
             default:
         }
-    }
+    
 });
 
 let zoom = 0;
