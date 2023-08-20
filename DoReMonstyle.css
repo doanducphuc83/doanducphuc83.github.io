@@ -14,9 +14,7 @@ body {
     overflow-y: hidden;
 }
 
-#anhGoc {
-    position: fixed;
-}
+
 
 .hien {
     display: none;

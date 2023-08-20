@@ -91,6 +91,7 @@ document.getElementById('btnGoIndex').addEventListener('click', () => {
     localStorage.removeItem("luuGio");
     localStorage.removeItem("luuPhut");
     localStorage.removeItem("luuGiay");
+    localStorage.removeItem("daPlay");
 });
 
 document.getElementById('btnPlayGame').style.marginTop = 20 + "vh";

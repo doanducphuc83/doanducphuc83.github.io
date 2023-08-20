@@ -3,178 +3,150 @@ let ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 ctx.font = '20px Georgia';
-const anhgocjs = document.getElementById('anhGoc');
-function getFullscreenElement() {
-    return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullscreenElement || document.msFullscreenElement;
-}
 
-function anhGocFullScreen() {
-    if (getFullscreenElement()) {
-        document.exitFullscreen();
-    }
-    else {
-        anhgocjs.requestFullscreen().catch((e) => { });
-    }
-}
-
-anhgocjs.addEventListener("click", () => {
-    anhGocFullScreen();
-});
+localStorage.setItem("daPlay", JSON.stringify(0));
 
 function gameFullScreen() {
     document.documentElement.requestFullscreen().catch((e) => { });
 }
 document.addEventListener("dblclick", () => {
-    switch (screen.orientation.type) {
-        case "landscape-primary":
-            gameFullScreen();
-            let myScreenOrientation = window.screen.orientation;
-            myScreenOrientation.lock("landscape");
-            break;
-        case "portrait-primary":
-            gameFullScreen();
-            let myScreenOrientationxyz = window.screen.orientation;
-            myScreenOrientationxyz.lock("portrait");
-            break;
-        default:
+    daPlayjs = JSON.parse(localStorage.getItem("daPlay"));
+    if (daPlayjs === 0) {
+        switch (screen.orientation.type) {
+            case "landscape-primary":
+                gameFullScreen();
+                let myScreenOrientation = window.screen.orientation;
+                myScreenOrientation.lock("landscape");
+                break;
+            case "portrait-primary":
+                gameFullScreen();
+                let myScreenOrientationxyz = window.screen.orientation;
+                myScreenOrientationxyz.lock("portrait");
+                break;
+            default:
+        }
     }
 });
 
-
+let zoom = 0;
+const imgGoc = new Image();
+imgGoc.src = 'img/doremon/img-goc.png';
 class AnhGoc {
     constructor(resizeCanvas) {
         this.resizeCanvas = resizeCanvas;
+        this.widthgoc = 150;
+        this.heightgoc = 150;
+
         if (this.resizeCanvas.width < this.resizeCanvas.height) {
             if (this.resizeCanvas.width < 414) {
-                this.width = 75;
-                this.height = 75;
-                this.canhTrai = this.resizeCanvas.width - (this.resizeCanvas.width - this.width * 4 - 6) / 2 - 2 * this.width;
-                this.canhTren = this.resizeCanvas.height - 7.5 * this.height;
-                this.canhTraiTextTime = this.resizeCanvas.width / 20;
-                this.canhTrenTextTime = this.resizeCanvas.height / 10;
-
-                this.canhTraiTextTimedh = this.resizeCanvas.width - 127;
-                this.canhTrenTextTimedh = this.resizeCanvas.height / 10;
+                this.x = this.resizeCanvas.width - (this.resizeCanvas.width - 306) / 2 - 150;
+                this.y = this.resizeCanvas.height - 562.5;
             }
             if (this.resizeCanvas.width >= 414) {
-                this.width = 100;
-                this.height = 100;
-                this.canhTrai = this.resizeCanvas.width - (this.resizeCanvas.width - this.width * 4 - 6) / 2 - 2 * this.width;
-                this.canhTren = this.resizeCanvas.height - 7.5 * this.height;
-                this.canhTraiTextTime = this.resizeCanvas.width / 20;
-                this.canhTrenTextTime = this.resizeCanvas.height / 10;
-
-                this.canhTraiTextTimedh = this.resizeCanvas.width - 155;
-                this.canhTrenTextTimedh = this.resizeCanvas.height / 10;
+                this.x = this.resizeCanvas.width - (this.resizeCanvas.width - 406) / 2 - 200;
+                this.y = this.resizeCanvas.height - 750;
             }
-
         }
         if (this.resizeCanvas.width > this.resizeCanvas.height) {
             if (this.resizeCanvas.width < 844) {
-                this.width = 90;
-                this.height = 90;
-                this.canhTrai = 10;
-                this.canhTren = this.resizeCanvas.height - this.height * 2.5;
-                this.canhTraiTextTime = this.resizeCanvas.width - 140;
-                this.canhTrenTextTime = this.resizeCanvas.height - this.height * 4 - 8;
-
-                this.canhTraiTextTimedh = this.resizeCanvas.width - 140;
-                this.canhTrenTextTimedh = this.resizeCanvas.height - this.height * 3.5;
+                this.x = 10;
+                this.y = this.resizeCanvas.height - 225;
+                this.widthgoc = 100;
+                this.heightgoc = 100;
             }
             if (this.resizeCanvas.width >= 844) {
-                this.width = 110;
-                this.height = 110;
-                this.canhTrai = this.resizeCanvas.width - (this.resizeCanvas.width - 90 * 4 - 6) / 2 - 90 * 4 - 6 - 200;
-                this.canhTren = this.resizeCanvas.height - this.height * 2.5;
-                this.canhTraiTextTime = this.resizeCanvas.width - 140;
-                this.canhTrenTextTime = this.resizeCanvas.height - this.height * 3.4 - 8;
+                this.x = this.resizeCanvas.width - (this.resizeCanvas.width - 366) / 2 - 566;
+                this.y = this.resizeCanvas.height - 275;
+            }
+        }
+        document.addEventListener("click", (e) => {
+            if (e.pageX > this.x && e.pageX < this.x + this.widthgoc && e.pageY > this.y && e.pageY < this.y + this.heightgoc) {
+                if (this.widthgoc < this.resizeCanvas.width) {
+                    this.widthgoc = this.resizeCanvas.width;
+                    this.heightgoc = this.resizeCanvas.height;
+                    this.x = 0;
+                    this.y = 0;
+                    document.getElementById('btn').style.display = 'none';
+                    document.getElementById('exit').style.display = 'none';
+                    document.getElementById('chuyenDenEnd').style.display = 'none';
+                    document.getElementById('random').style.display = 'none';
+                    document.getElementById('textTime').style.display = 'none';
+                    document.getElementById('dongHo').style.display = 'none';
+                    zoom = 1;
+                    return;
+                }
 
-                this.canhTraiTextTimedh = this.resizeCanvas.width - 140;
-                this.canhTrenTextTimedh = this.resizeCanvas.height - this.height * 3;
             }
 
-        }
+            if (this.widthgoc = this.resizeCanvas.width) {
+                this.widthgoc = 150;
+                this.heightgoc = 150;
+                if (this.resizeCanvas.width < this.resizeCanvas.height) {
+                    if (this.resizeCanvas.width < 414) {
+                        this.x = this.resizeCanvas.width - (this.resizeCanvas.width - 306) / 2 - 150;
+                        this.y = this.resizeCanvas.height - 562.5;
+                    }
+                    if (this.resizeCanvas.width >= 414) {
+                        this.x = this.resizeCanvas.width - (this.resizeCanvas.width - 406) / 2 - 200;
+                        this.y = this.resizeCanvas.height - 750;
+                    }
+                }
+                if (this.resizeCanvas.width > this.resizeCanvas.height) {
+                    if (this.resizeCanvas.width < 844) {
+                        this.x = 10;
+                        this.y = this.resizeCanvas.height - 225;
+                        this.widthgoc = 100;
+                        this.heightgoc = 100;
+                    }
+                    if (this.resizeCanvas.width >= 844) {
+                        this.x = this.resizeCanvas.width - (this.resizeCanvas.width - 366) / 2 - 566;
+                        this.y = this.resizeCanvas.height - 275;
+                    }
+                }
+                document.getElementById('btn').style.display = 'block';
+                document.getElementById('exit').style.display = 'block';
+                document.getElementById('chuyenDenEnd').style.display = 'block';
+                document.getElementById('random').style.display = 'block';
+                document.getElementById('textTime').style.display = 'block';
+                document.getElementById('dongHo').style.display = 'block';
+                zoom = 0;
+                return;
+            }
+
+        });
+
     }
-    update() {
-        document.getElementById('anhGoc').style.marginLeft = this.canhTrai + "px";
-        document.getElementById('anhGoc').style.marginTop = this.canhTren + "px";
-        document.getElementById('anhGoc').classList.remove("hien");
-        document.getElementById('textTime').style.marginLeft = this.canhTraiTextTime + "px";
-        document.getElementById('textTime').style.marginTop = this.canhTrenTextTime + "px";
-
-        document.getElementById('dongHo').style.marginLeft = this.canhTraiTextTimedh + "px";
-        document.getElementById('dongHo').style.marginTop = this.canhTrenTextTimedh + "px";
-
-
-        if (this.resizeCanvas.width < this.resizeCanvas.height) {
-            if (this.resizeCanvas.height < 642) {
-                document.getElementById('anhGoc').style.display = 'none';
-            }
-        }
-        if (this.resizeCanvas.width > this.resizeCanvas.height) {
-            if (this.resizeCanvas.width < 844) {
-                document.getElementById('anhGoc').style.width = 100 + "px";
-                document.getElementById('anhGoc').style.height = 100 + "px";
-            }
-            if (this.resizeCanvas.width >= 844) {
-                document.getElementById('anhGoc').style.width = 190 + "px";
-                document.getElementById('anhGoc').style.height = 190 + "px";
-            }
-        }
+    draw(ctx) {
+        ctx.drawImage(imgGoc, this.x, this.y, this.widthgoc, this.heightgoc);
     }
     reset() {
+        this.widthgoc = 150;
+        this.heightgoc = 150;
         if (this.resizeCanvas.width < this.resizeCanvas.height) {
             if (this.resizeCanvas.width < 414) {
-                this.width = 75;
-                this.height = 75;
-                this.canhTrai = this.resizeCanvas.width - (this.resizeCanvas.width - this.width * 4 - 6) / 2 - 2 * this.width;
-                this.canhTren = this.resizeCanvas.height - 7.5 * this.height;
-                this.canhTraiTextTime = this.resizeCanvas.width / 20;
-                this.canhTrenTextTime = this.resizeCanvas.height / 10;
-
-                this.canhTraiTextTimedh = this.resizeCanvas.width - 127;
-                this.canhTrenTextTimedh = this.resizeCanvas.height / 10;
+                this.x = this.resizeCanvas.width - (this.resizeCanvas.width - 306) / 2 - 150;
+                this.y = this.resizeCanvas.height - 562.5;
             }
             if (this.resizeCanvas.width >= 414) {
-                this.width = 100;
-                this.height = 100;
-                this.canhTrai = this.resizeCanvas.width - (this.resizeCanvas.width - this.width * 4 - 6) / 2 - 2 * this.width;
-                this.canhTren = this.resizeCanvas.height - 7.5 * this.height;
-                this.canhTraiTextTime = this.resizeCanvas.width / 20;
-                this.canhTrenTextTime = this.resizeCanvas.height / 10;
-
-                this.canhTraiTextTimedh = this.resizeCanvas.width - 155;
-                this.canhTrenTextTimedh = this.resizeCanvas.height / 10;
+                this.x = this.resizeCanvas.width - (this.resizeCanvas.width - 406) / 2 - 200;
+                this.y = this.resizeCanvas.height - 750;
             }
-
         }
         if (this.resizeCanvas.width > this.resizeCanvas.height) {
             if (this.resizeCanvas.width < 844) {
-                this.width = 90;
-                this.height = 90;
-                this.canhTrai = 10;
-                this.canhTren = this.resizeCanvas.height - this.height * 2.5;
-                this.canhTraiTextTime = this.resizeCanvas.width - 140;
-                this.canhTrenTextTime = this.resizeCanvas.height - this.height * 4 - 8;
-
-                this.canhTraiTextTimedh = this.resizeCanvas.width - 140;
-                this.canhTrenTextTimedh = this.resizeCanvas.height - this.height * 3.5;
+                this.x = 10;
+                this.y = this.resizeCanvas.height - 225;
+                this.widthgoc = 100;
+                this.heightgoc = 100;
             }
             if (this.resizeCanvas.width >= 844) {
-                this.width = 110;
-                this.height = 110;
-                this.canhTrai = this.resizeCanvas.width - (this.resizeCanvas.width - 90 * 4 - 6) / 2 - 90 * 4 - 6 - 200;
-                this.canhTren = this.resizeCanvas.height - this.height * 2.5;
-                this.canhTraiTextTime = this.resizeCanvas.width - 140;
-                this.canhTrenTextTime = this.resizeCanvas.height - this.height * 3.4 - 8;
-
-                this.canhTraiTextTimedh = this.resizeCanvas.width - 140;
-                this.canhTrenTextTimedh = this.resizeCanvas.height - this.height * 3;
+                this.x = this.resizeCanvas.width - (this.resizeCanvas.width - 366) / 2 - 566;
+                this.y = this.resizeCanvas.height - 275;
             }
-
         }
     }
 }
+
 
 const anh16 = new Image();
 anh16.src = 'img/doremon/img-16.png'
@@ -2035,33 +2007,68 @@ class ResizeCanvas {
         localStorage.removeItem("tdBatDau");
         localStorage.removeItem("tdKetThuc");
 
-        if (resizeCanvas.width > resizeCanvas.height) {
-            document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
+        this.anhGoc.reset();
+
+        if (this.width < this.height) {
+            if (this.width < 414) {
+                document.getElementById('textTime').style.marginLeft = this.width / 20 + "px";
+                document.getElementById('textTime').style.marginTop = this.height / 10 + "px";
+
+                document.getElementById('dongHo').style.marginLeft = this.width - 127 + "px";
+                document.getElementById('dongHo').style.marginTop = this.height / 10 + "px";
+            }
+            if (this.width >= 414) {
+                document.getElementById('textTime').style.marginLeft = this.width / 20 + "px";
+                document.getElementById('textTime').style.marginTop = this.height / 10 + "px";
+
+                document.getElementById('dongHo').style.marginLeft = this.width - 155 + "px";
+                document.getElementById('dongHo').style.marginTop = this.height / 10 + "px";
+            }
+
+        }
+        if (this.width > this.height) {
+            if (this.width < 844) {
+                document.getElementById('textTime').style.marginLeft = this.width - 140 + "px";
+                document.getElementById('textTime').style.marginTop = this.height - 368 + "px";
+
+                document.getElementById('dongHo').style.marginLeft = this.width - 140 + "px";
+                document.getElementById('dongHo').style.marginTop = this.height - 315 + "px";
+            }
+            if (this.width >= 844) {
+                document.getElementById('textTime').style.marginLeft = this.width - 140 + "px";
+                document.getElementById('textTime').style.marginTop = this.height - 382 + "px";
+
+                document.getElementById('dongHo').style.marginLeft = this.width - 140 + "px";
+                document.getElementById('dongHo').style.marginTop = this.height - 330 + "px";
+            }
+
+        }
+
+        if (this.width > this.height) {
+            document.getElementById('btn').style.marginTop = this.height - 70 + "px";
             document.getElementById('btn').style.marginLeft = 50 + "px";
-            if (resizeCanvas.width <= 667) {
+            if (this.width <= 667) {
                 document.getElementById('btn').style.marginLeft = 10 + "px";
             }
-            document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
-            document.getElementById('chuyenDenEnd').style.marginTop = resizeCanvas.height - 250 + "px";
-            document.getElementById('exit').style.marginLeft = resizeCanvas.width - 145 + "px";
-            document.getElementById('exit').style.marginTop = resizeCanvas.height - 70 + "px";
-            document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
-            document.getElementById('random').style.marginTop = resizeCanvas.height - 160 + "px";
+            document.getElementById('chuyenDenEnd').style.marginLeft = this.width - 145 + "px";
+            document.getElementById('chuyenDenEnd').style.marginTop = this.height - 250 + "px";
+            document.getElementById('exit').style.marginLeft = this.width - 145 + "px";
+            document.getElementById('exit').style.marginTop = this.height - 70 + "px";
+            document.getElementById('random').style.marginLeft = this.width - 145 + "px";
+            document.getElementById('random').style.marginTop = this.height - 160 + "px";
         }
-        if (resizeCanvas.width < resizeCanvas.height) {
-            document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
+        if (this.width < this.height) {
+            document.getElementById('btn').style.marginTop = this.height - 70 + "px";
             document.getElementById('btn').style.marginLeft = 10 + "px";
-            document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
-            document.getElementById('random').style.marginTop = resizeCanvas.height - 70 + "px";
-            document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
+            document.getElementById('random').style.marginLeft = this.width - 145 + "px";
+            document.getElementById('random').style.marginTop = this.height - 70 + "px";
+            document.getElementById('chuyenDenEnd').style.marginLeft = this.width - 145 + "px";
             document.getElementById('chuyenDenEnd').style.marginTop = 10 + "px";
             document.getElementById('exit').style.marginLeft = 10 + "px";
             document.getElementById('exit').style.marginTop = 10 + "px";
         }
 
         ctx.font = '20px Georgia';
-
-        this.anhGoc.reset();
 
         this.anh16class.reset();
         this.anh15class.reset();
@@ -2105,76 +2112,76 @@ class ResizeCanvas {
     }
     update() {
         // Lưu tọa độ của ảnh (giá trị lưu không thay đổi khi di chuyển ảnh):
-        localStorage.setItem("xTrangcd", JSON.stringify(resizeCanvas.dinhViAnhTrang.x));
-        localStorage.setItem("yTrangcd", JSON.stringify(resizeCanvas.dinhViAnhTrang.y));
-        localStorage.setItem("x1cd", JSON.stringify(resizeCanvas.dinhViAnh1class.x));
-        localStorage.setItem("y1cd", JSON.stringify(resizeCanvas.dinhViAnh1class.y));
-        localStorage.setItem("x2cd", JSON.stringify(resizeCanvas.dinhViAnh2class.x));
-        localStorage.setItem("y2cd", JSON.stringify(resizeCanvas.dinhViAnh2class.y));
-        localStorage.setItem("x3cd", JSON.stringify(resizeCanvas.dinhViAnh3class.x));
-        localStorage.setItem("y3cd", JSON.stringify(resizeCanvas.dinhViAnh3class.y));
-        localStorage.setItem("x4cd", JSON.stringify(resizeCanvas.dinhViAnh4class.x));
-        localStorage.setItem("y4cd", JSON.stringify(resizeCanvas.dinhViAnh4class.y));
-        localStorage.setItem("x5cd", JSON.stringify(resizeCanvas.dinhViAnh5class.x));
-        localStorage.setItem("y5cd", JSON.stringify(resizeCanvas.dinhViAnh5class.y));
-        localStorage.setItem("x6cd", JSON.stringify(resizeCanvas.dinhViAnh6class.x));
-        localStorage.setItem("y6cd", JSON.stringify(resizeCanvas.dinhViAnh6class.y));
-        localStorage.setItem("x7cd", JSON.stringify(resizeCanvas.dinhViAnh7class.x));
-        localStorage.setItem("y7cd", JSON.stringify(resizeCanvas.dinhViAnh7class.y));
-        localStorage.setItem("x8cd", JSON.stringify(resizeCanvas.dinhViAnh8class.x));
-        localStorage.setItem("y8cd", JSON.stringify(resizeCanvas.dinhViAnh8class.y));
-        localStorage.setItem("x9cd", JSON.stringify(resizeCanvas.dinhViAnh9class.x));
-        localStorage.setItem("y9cd", JSON.stringify(resizeCanvas.dinhViAnh9class.y));
-        localStorage.setItem("x10cd", JSON.stringify(resizeCanvas.dinhViAnh10class.x));
-        localStorage.setItem("y10cd", JSON.stringify(resizeCanvas.dinhViAnh10class.y));
-        localStorage.setItem("x11cd", JSON.stringify(resizeCanvas.dinhViAnh11class.x));
-        localStorage.setItem("y11cd", JSON.stringify(resizeCanvas.dinhViAnh11class.y));
-        localStorage.setItem("x12cd", JSON.stringify(resizeCanvas.dinhViAnh12class.x));
-        localStorage.setItem("y12cd", JSON.stringify(resizeCanvas.dinhViAnh12class.y));
-        localStorage.setItem("x13cd", JSON.stringify(resizeCanvas.dinhViAnh13class.x));
-        localStorage.setItem("y13cd", JSON.stringify(resizeCanvas.dinhViAnh13class.y));
-        localStorage.setItem("x14cd", JSON.stringify(resizeCanvas.dinhViAnh14class.x));
-        localStorage.setItem("y14cd", JSON.stringify(resizeCanvas.dinhViAnh14class.y));
-        localStorage.setItem("x15cd", JSON.stringify(resizeCanvas.dinhViAnh15class.x));
-        localStorage.setItem("y15cd", JSON.stringify(resizeCanvas.dinhViAnh15class.y));
-        localStorage.setItem("x16cd", JSON.stringify(resizeCanvas.dinhViAnh16class.x));
-        localStorage.setItem("y16cd", JSON.stringify(resizeCanvas.dinhViAnh16class.y));
+        localStorage.setItem("xTrangcd", JSON.stringify(this.dinhViAnhTrang.x));
+        localStorage.setItem("yTrangcd", JSON.stringify(this.dinhViAnhTrang.y));
+        localStorage.setItem("x1cd", JSON.stringify(this.dinhViAnh1class.x));
+        localStorage.setItem("y1cd", JSON.stringify(this.dinhViAnh1class.y));
+        localStorage.setItem("x2cd", JSON.stringify(this.dinhViAnh2class.x));
+        localStorage.setItem("y2cd", JSON.stringify(this.dinhViAnh2class.y));
+        localStorage.setItem("x3cd", JSON.stringify(this.dinhViAnh3class.x));
+        localStorage.setItem("y3cd", JSON.stringify(this.dinhViAnh3class.y));
+        localStorage.setItem("x4cd", JSON.stringify(this.dinhViAnh4class.x));
+        localStorage.setItem("y4cd", JSON.stringify(this.dinhViAnh4class.y));
+        localStorage.setItem("x5cd", JSON.stringify(this.dinhViAnh5class.x));
+        localStorage.setItem("y5cd", JSON.stringify(this.dinhViAnh5class.y));
+        localStorage.setItem("x6cd", JSON.stringify(this.dinhViAnh6class.x));
+        localStorage.setItem("y6cd", JSON.stringify(this.dinhViAnh6class.y));
+        localStorage.setItem("x7cd", JSON.stringify(this.dinhViAnh7class.x));
+        localStorage.setItem("y7cd", JSON.stringify(this.dinhViAnh7class.y));
+        localStorage.setItem("x8cd", JSON.stringify(this.dinhViAnh8class.x));
+        localStorage.setItem("y8cd", JSON.stringify(this.dinhViAnh8class.y));
+        localStorage.setItem("x9cd", JSON.stringify(this.dinhViAnh9class.x));
+        localStorage.setItem("y9cd", JSON.stringify(this.dinhViAnh9class.y));
+        localStorage.setItem("x10cd", JSON.stringify(this.dinhViAnh10class.x));
+        localStorage.setItem("y10cd", JSON.stringify(this.dinhViAnh10class.y));
+        localStorage.setItem("x11cd", JSON.stringify(this.dinhViAnh11class.x));
+        localStorage.setItem("y11cd", JSON.stringify(this.dinhViAnh11class.y));
+        localStorage.setItem("x12cd", JSON.stringify(this.dinhViAnh12class.x));
+        localStorage.setItem("y12cd", JSON.stringify(this.dinhViAnh12class.y));
+        localStorage.setItem("x13cd", JSON.stringify(this.dinhViAnh13class.x));
+        localStorage.setItem("y13cd", JSON.stringify(this.dinhViAnh13class.y));
+        localStorage.setItem("x14cd", JSON.stringify(this.dinhViAnh14class.x));
+        localStorage.setItem("y14cd", JSON.stringify(this.dinhViAnh14class.y));
+        localStorage.setItem("x15cd", JSON.stringify(this.dinhViAnh15class.x));
+        localStorage.setItem("y15cd", JSON.stringify(this.dinhViAnh15class.y));
+        localStorage.setItem("x16cd", JSON.stringify(this.dinhViAnh16class.x));
+        localStorage.setItem("y16cd", JSON.stringify(this.dinhViAnh16class.y));
 
         // lưu tọa độ của ảnh trước khi di chuyển:
-        localStorage.setItem("xTrang", JSON.stringify(resizeCanvas.anhTrang.x));
-        localStorage.setItem("yTrang", JSON.stringify(resizeCanvas.anhTrang.y));
-        localStorage.setItem("x1", JSON.stringify(resizeCanvas.anh1class.x));
-        localStorage.setItem("y1", JSON.stringify(resizeCanvas.anh1class.y));
-        localStorage.setItem("x2", JSON.stringify(resizeCanvas.anh2class.x));
-        localStorage.setItem("y2", JSON.stringify(resizeCanvas.anh2class.y));
-        localStorage.setItem("x3", JSON.stringify(resizeCanvas.anh3class.x));
-        localStorage.setItem("y3", JSON.stringify(resizeCanvas.anh3class.y));
-        localStorage.setItem("x4", JSON.stringify(resizeCanvas.anh4class.x));
-        localStorage.setItem("y4", JSON.stringify(resizeCanvas.anh4class.y));
-        localStorage.setItem("x5", JSON.stringify(resizeCanvas.anh5class.x));
-        localStorage.setItem("y5", JSON.stringify(resizeCanvas.anh5class.y));
-        localStorage.setItem("x6", JSON.stringify(resizeCanvas.anh6class.x));
-        localStorage.setItem("y6", JSON.stringify(resizeCanvas.anh6class.y));
-        localStorage.setItem("x7", JSON.stringify(resizeCanvas.anh7class.x));
-        localStorage.setItem("y7", JSON.stringify(resizeCanvas.anh7class.y));
-        localStorage.setItem("x8", JSON.stringify(resizeCanvas.anh8class.x));
-        localStorage.setItem("y8", JSON.stringify(resizeCanvas.anh8class.y));
-        localStorage.setItem("x9", JSON.stringify(resizeCanvas.anh9class.x));
-        localStorage.setItem("y9", JSON.stringify(resizeCanvas.anh9class.y));
-        localStorage.setItem("x10", JSON.stringify(resizeCanvas.anh10class.x));
-        localStorage.setItem("y10", JSON.stringify(resizeCanvas.anh10class.y));
-        localStorage.setItem("x11", JSON.stringify(resizeCanvas.anh11class.x));
-        localStorage.setItem("y11", JSON.stringify(resizeCanvas.anh11class.y));
-        localStorage.setItem("x12", JSON.stringify(resizeCanvas.anh12class.x));
-        localStorage.setItem("y12", JSON.stringify(resizeCanvas.anh12class.y));
-        localStorage.setItem("x13", JSON.stringify(resizeCanvas.anh13class.x));
-        localStorage.setItem("y13", JSON.stringify(resizeCanvas.anh13class.y));
-        localStorage.setItem("x14", JSON.stringify(resizeCanvas.anh14class.x));
-        localStorage.setItem("y14", JSON.stringify(resizeCanvas.anh14class.y));
-        localStorage.setItem("x15", JSON.stringify(resizeCanvas.anh15class.x));
-        localStorage.setItem("y15", JSON.stringify(resizeCanvas.anh15class.y));
-        localStorage.setItem("x16", JSON.stringify(resizeCanvas.anh16class.x));
-        localStorage.setItem("y16", JSON.stringify(resizeCanvas.anh16class.y));
+        localStorage.setItem("xTrang", JSON.stringify(this.anhTrang.x));
+        localStorage.setItem("yTrang", JSON.stringify(this.anhTrang.y));
+        localStorage.setItem("x1", JSON.stringify(this.anh1class.x));
+        localStorage.setItem("y1", JSON.stringify(this.anh1class.y));
+        localStorage.setItem("x2", JSON.stringify(this.anh2class.x));
+        localStorage.setItem("y2", JSON.stringify(this.anh2class.y));
+        localStorage.setItem("x3", JSON.stringify(this.anh3class.x));
+        localStorage.setItem("y3", JSON.stringify(this.anh3class.y));
+        localStorage.setItem("x4", JSON.stringify(this.anh4class.x));
+        localStorage.setItem("y4", JSON.stringify(this.anh4class.y));
+        localStorage.setItem("x5", JSON.stringify(this.anh5class.x));
+        localStorage.setItem("y5", JSON.stringify(this.anh5class.y));
+        localStorage.setItem("x6", JSON.stringify(this.anh6class.x));
+        localStorage.setItem("y6", JSON.stringify(this.anh6class.y));
+        localStorage.setItem("x7", JSON.stringify(this.anh7class.x));
+        localStorage.setItem("y7", JSON.stringify(this.anh7class.y));
+        localStorage.setItem("x8", JSON.stringify(this.anh8class.x));
+        localStorage.setItem("y8", JSON.stringify(this.anh8class.y));
+        localStorage.setItem("x9", JSON.stringify(this.anh9class.x));
+        localStorage.setItem("y9", JSON.stringify(this.anh9class.y));
+        localStorage.setItem("x10", JSON.stringify(this.anh10class.x));
+        localStorage.setItem("y10", JSON.stringify(this.anh10class.y));
+        localStorage.setItem("x11", JSON.stringify(this.anh11class.x));
+        localStorage.setItem("y11", JSON.stringify(this.anh11class.y));
+        localStorage.setItem("x12", JSON.stringify(this.anh12class.x));
+        localStorage.setItem("y12", JSON.stringify(this.anh12class.y));
+        localStorage.setItem("x13", JSON.stringify(this.anh13class.x));
+        localStorage.setItem("y13", JSON.stringify(this.anh13class.y));
+        localStorage.setItem("x14", JSON.stringify(this.anh14class.x));
+        localStorage.setItem("y14", JSON.stringify(this.anh14class.y));
+        localStorage.setItem("x15", JSON.stringify(this.anh15class.x));
+        localStorage.setItem("y15", JSON.stringify(this.anh15class.y));
+        localStorage.setItem("x16", JSON.stringify(this.anh16class.x));
+        localStorage.setItem("y16", JSON.stringify(this.anh16class.y));
 
         this.dinhViAnh16class.draw(ctx);
         this.dinhViAnh15class.draw(ctx);
@@ -2194,7 +2201,6 @@ class ResizeCanvas {
         this.dinhViAnh1class.draw(ctx);
         this.dinhViAnhTrang.draw(ctx);
 
-        this.anhGoc.update();
         this.anh16class.draw(ctx);
         this.anh15class.draw(ctx);
         this.anh14class.draw(ctx);
@@ -2213,29 +2219,65 @@ class ResizeCanvas {
         this.anh1class.draw(ctx);
         this.anhTrang.draw(ctx);
 
-        if (resizeCanvas.width > resizeCanvas.height) {
-            document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
+        if (this.width < this.height) {
+            if (this.width < 414) {
+                document.getElementById('textTime').style.marginLeft = this.width / 20 + "px";
+                document.getElementById('textTime').style.marginTop = this.height / 10 + "px";
+
+                document.getElementById('dongHo').style.marginLeft = this.width - 127 + "px";
+                document.getElementById('dongHo').style.marginTop = this.height / 10 + "px";
+            }
+            if (this.width >= 414) {
+                document.getElementById('textTime').style.marginLeft = this.width / 20 + "px";
+                document.getElementById('textTime').style.marginTop = this.height / 10 + "px";
+
+                document.getElementById('dongHo').style.marginLeft = this.width - 155 + "px";
+                document.getElementById('dongHo').style.marginTop = this.height / 10 + "px";
+            }
+
+        }
+        if (this.width > this.height) {
+            if (this.width < 844) {
+                document.getElementById('textTime').style.marginLeft = this.width - 140 + "px";
+                document.getElementById('textTime').style.marginTop = this.height - 368 + "px";
+
+                document.getElementById('dongHo').style.marginLeft = this.width - 140 + "px";
+                document.getElementById('dongHo').style.marginTop = this.height - 315 + "px";
+            }
+            if (this.width >= 844) {
+                document.getElementById('textTime').style.marginLeft = this.width - 140 + "px";
+                document.getElementById('textTime').style.marginTop = this.height - 382 + "px";
+
+                document.getElementById('dongHo').style.marginLeft = this.width - 140 + "px";
+                document.getElementById('dongHo').style.marginTop = this.height - 330 + "px";
+            }
+
+        }
+
+        if (this.width > this.height) {
+            document.getElementById('btn').style.marginTop = this.height - 70 + "px";
             document.getElementById('btn').style.marginLeft = 50 + "px";
-            if (resizeCanvas.width <= 667) {
+            if (this.width <= 667) {
                 document.getElementById('btn').style.marginLeft = 10 + "px";
             }
-            document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
-            document.getElementById('chuyenDenEnd').style.marginTop = resizeCanvas.height - 250 + "px";
-            document.getElementById('exit').style.marginLeft = resizeCanvas.width - 145 + "px";
-            document.getElementById('exit').style.marginTop = resizeCanvas.height - 70 + "px";
-            document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
-            document.getElementById('random').style.marginTop = resizeCanvas.height - 160 + "px";
+            document.getElementById('chuyenDenEnd').style.marginLeft = this.width - 145 + "px";
+            document.getElementById('chuyenDenEnd').style.marginTop = this.height - 250 + "px";
+            document.getElementById('exit').style.marginLeft = this.width - 145 + "px";
+            document.getElementById('exit').style.marginTop = this.height - 70 + "px";
+            document.getElementById('random').style.marginLeft = this.width - 145 + "px";
+            document.getElementById('random').style.marginTop = this.height - 160 + "px";
         }
-        if (resizeCanvas.width < resizeCanvas.height) {
-            document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
+        if (this.width < this.height) {
+            document.getElementById('btn').style.marginTop = this.height - 70 + "px";
             document.getElementById('btn').style.marginLeft = 10 + "px";
-            document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
-            document.getElementById('random').style.marginTop = resizeCanvas.height - 70 + "px";
-            document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
+            document.getElementById('random').style.marginLeft = this.width - 145 + "px";
+            document.getElementById('random').style.marginTop = this.height - 70 + "px";
+            document.getElementById('chuyenDenEnd').style.marginLeft = this.width - 145 + "px";
             document.getElementById('chuyenDenEnd').style.marginTop = 10 + "px";
             document.getElementById('exit').style.marginLeft = 10 + "px";
             document.getElementById('exit').style.marginTop = 10 + "px";
         }
+        this.anhGoc.draw(ctx);
     }
 }
 const resizeCanvas = new ResizeCanvas(canvas);
@@ -2352,6 +2394,7 @@ localStorage.setItem("x15", JSON.stringify(resizeCanvas.anh15class.x));
 localStorage.setItem("y15", JSON.stringify(resizeCanvas.anh15class.y));
 localStorage.setItem("x16", JSON.stringify(resizeCanvas.anh16class.x));
 localStorage.setItem("y16", JSON.stringify(resizeCanvas.anh16class.y));
+
 function dieuKhien() {
     // lưu tọa độ của ảnh trước khi di chuyển:
     localStorage.setItem("xTrang", JSON.stringify(resizeCanvas.anhTrang.x));
@@ -2441,7 +2484,7 @@ function dieuKhien() {
                         }
                     }
                 }
-
+                localStorage.setItem("daPlay", JSON.stringify(1));
                 localStorage.setItem("xTrang", JSON.stringify(resizeCanvas.anhTrang.x));
                 localStorage.setItem("yTrang", JSON.stringify(resizeCanvas.anhTrang.y));
 
@@ -4009,6 +4052,32 @@ let thoiDiemKetThuc = 0;
 let gioKetThuc = 0;
 let phutKetThuc = 0;
 let giayKetThuc = 0;
+
+
+function cssbtn() {
+    if (resizeCanvas.width > resizeCanvas.height) {
+        document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
+        document.getElementById('btn').style.marginLeft = 50 + "px";
+        if (resizeCanvas.width <= 667) {
+            document.getElementById('btn').style.marginLeft = 10 + "px";
+        }
+        document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
+        document.getElementById('chuyenDenEnd').style.marginTop = resizeCanvas.height - 250 + "px";
+        document.getElementById('exit').style.marginLeft = resizeCanvas.width - 145 + "px";
+        document.getElementById('exit').style.marginTop = resizeCanvas.height - 70 + "px";
+        document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
+        document.getElementById('random').style.marginTop = resizeCanvas.height - 160 + "px";
+    }
+    if (resizeCanvas.width < resizeCanvas.height) {
+        document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
+        document.getElementById('btn').style.marginLeft = 10 + "px";
+        document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
+        document.getElementById('random').style.marginTop = resizeCanvas.height - 70 + "px";
+        document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
+    }
+}
+cssbtn();
+
 function kiemTra() {
     x1jskt = JSON.parse(localStorage.getItem("x1"));
     y1jskt = JSON.parse(localStorage.getItem("y1"));
@@ -4109,20 +4178,24 @@ function kiemTra() {
 
     if (x1jskt === x1jscd && y1jskt === y1jscd && x2jskt === x2jscd && y2jskt === y2jscd && x3jskt === x3jscd && y3jskt === y3jscd && x4jskt === x4jscd && y4jskt === y4jscd && x5jskt === x5jscd && y5jskt === y5jscd && x6jskt === x6jscd && y6jskt === y6jscd && x7jskt === x7jscd && y7jskt === y7jscd && x8jskt === x8jscd && y8jskt === y8jscd && x9jskt === x9jscd && y9jskt === y9jscd && x10jskt === x10jscd && y10jskt === y10jscd && x11jskt === x11jscd && y11jskt === y11jscd && x12jskt === x12jscd && y12jskt === y12jscd && x13jskt === x13jscd && y13jskt === y13jscd && x14jskt === x14jscd && y14jskt === y14jscd && x15jskt === x15jscd && y15jskt === y15jscd && x16jskt === x16jscd && y16jskt === y16jscd) {
         const ketThucGame = JSON.parse(localStorage.getItem("anh1dichuyen"));
+        localStorage.setItem("daPlay", JSON.stringify(0));
         const anhDung = new Image();
         anhDung.src = '/img/doremon/dung.png';
         // Hiển thị khi mở Game.
-        if (resizeCanvas.width < resizeCanvas.height) {
-            if (resizeCanvas.width < 414) {
-                ctx.drawImage(anhDung, resizeCanvas.anhTrang.x, resizeCanvas.anhTrang.y, 75, 75);
+        if (zoom === 0) {
+            if (resizeCanvas.width < resizeCanvas.height) {
+                if (resizeCanvas.width < 414) {
+                    ctx.drawImage(anhDung, resizeCanvas.anhTrang.x, resizeCanvas.anhTrang.y, 75, 75);
+                }
+                if (resizeCanvas.width >= 414) {
+                    ctx.drawImage(anhDung, resizeCanvas.anhTrang.x, resizeCanvas.anhTrang.y, 100, 100);
+                }
             }
-            if (resizeCanvas.width >= 414) {
-                ctx.drawImage(anhDung, resizeCanvas.anhTrang.x, resizeCanvas.anhTrang.y, 100, 100);
+            if (resizeCanvas.width > resizeCanvas.height) {
+                ctx.drawImage(anhDung, resizeCanvas.anhTrang.x, resizeCanvas.anhTrang.y, 90, 90);
             }
         }
-        if (resizeCanvas.width > resizeCanvas.height) {
-            ctx.drawImage(anhDung, resizeCanvas.anhTrang.x, resizeCanvas.anhTrang.y, 90, 90);
-        }
+
         // kết thúc Game.
         if (ketThucGame === 1) {
             const curDate2 = new Date();
@@ -4143,29 +4216,6 @@ function kiemTra() {
     }
 }
 
-function cssbtn() {
-    if (resizeCanvas.width > resizeCanvas.height) {
-        document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
-        document.getElementById('btn').style.marginLeft = 50 + "px";
-        if (resizeCanvas.width <= 667) {
-            document.getElementById('btn').style.marginLeft = 10 + "px";
-        }
-        document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
-        document.getElementById('chuyenDenEnd').style.marginTop = resizeCanvas.height - 250 + "px";
-        document.getElementById('exit').style.marginLeft = resizeCanvas.width - 145 + "px";
-        document.getElementById('exit').style.marginTop = resizeCanvas.height - 70 + "px";
-        document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
-        document.getElementById('random').style.marginTop = resizeCanvas.height - 160 + "px";
-    }
-    if (resizeCanvas.width < resizeCanvas.height) {
-        document.getElementById('btn').style.marginTop = resizeCanvas.height - 70 + "px";
-        document.getElementById('btn').style.marginLeft = 10 + "px";
-        document.getElementById('random').style.marginLeft = resizeCanvas.width - 145 + "px";
-        document.getElementById('random').style.marginTop = resizeCanvas.height - 70 + "px";
-        document.getElementById('chuyenDenEnd').style.marginLeft = resizeCanvas.width - 145 + "px";
-    }
-}
-cssbtn();
 let giodgt;
 let phutdgt;
 let giaydgt;
@@ -4285,6 +4335,7 @@ goHom.addEventListener('click', (e) => {
 });
 
 function randomImage() {
+    localStorage.setItem("daPlay", JSON.stringify(1));
     // lưu tọa độ của ảnh trước khi di chuyển:
     localStorage.setItem("xTrang", JSON.stringify(resizeCanvas.anhTrang.x));
     localStorage.setItem("yTrang", JSON.stringify(resizeCanvas.anhTrang.y));
